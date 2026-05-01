@@ -76,3 +76,24 @@ WHERE id IN (
     FROM courses 
     WHERE course_name LIKE '%IT%'
 );
+
+SELECT c.course_name, t.full_name AS teacher_name
+FROM courses c
+LEFT JOIN teachers t ON c.teacher_id = t.id;
+
+SELECT * 
+FROM students 
+WHERE YEAR(date_of_birth) = 2005;
+
+SELECT s.full_name AS student_name, s.id AS student_id, e.score
+FROM enrollments e
+JOIN students s ON e.student_id = s.id
+JOIN courses c ON e.course_id = c.id
+WHERE c.course_name = 'IT: Web Development'
+ORDER BY e.score DESC;
+
+SELECT s.full_name AS student_name, c.course_name, t.full_name AS teacher_name
+FROM enrollments e
+JOIN students s ON e.student_id = s.id
+JOIN courses c ON e.course_id = c.id
+LEFT JOIN teachers t ON c.teacher_id = t.id;
